@@ -1,2 +1,5 @@
 # .gitignore for Node.js projects
 node_modules/
+
+# 写真ファイル（メンバー写真）を除外
+seoul-trip-app/public/images/members/
