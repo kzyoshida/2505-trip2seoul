@@ -7,9 +7,15 @@ export const scheduleData = [
     title: '出発日',
     icon: <Plane className="w-6 h-6" />,
     events: [
-      { time: '09:55', title: '大阪（KIX）出発', description: 'エアソウル RS712', icon: <Plane className="w-5 h-5" /> },
-      { time: '11:55', title: 'ソウル（ICN）到着', description: '仁川国際空港', icon: <Plane className="w-5 h-5" /> },
-      { time: '12:30〜13:00', title: '空港で合流', description: 'ターミナル1で下田家と合流', icon: <Users className="w-5 h-5" /> },
+      // 下田家
+      { time: '08:55', title: '下田家 東京・成田（NRT）出発', description: 'ZIPAIR ZG041', icon: <Plane className="w-5 h-5 text-blue-500" /> },
+      { time: '11:25', title: '下田家 仁川（ICN）到着', description: '仁川国際空港', icon: <Plane className="w-5 h-5 text-blue-500" /> },
+      // 吉田家
+      { time: '09:55', title: '吉田家 大阪（KIX）出発', description: 'エアソウル RS712', icon: <Plane className="w-5 h-5 text-green-500" /> },
+      { time: '11:55', title: '吉田家 ソウル（ICN）到着', description: '仁川国際空港', icon: <Plane className="w-5 h-5 text-green-500" /> },
+      // 合流
+      { time: '12:30〜13:00', title: '空港で合流', description: 'ターミナル1で合流', icon: <Users className="w-5 h-5" /> },
+      // 共通行動
       { time: '13:30頃', title: 'A\'REX乗車', description: '空港鉄道でソウル駅へ（約43分）', icon: <Train className="w-5 h-5" /> },
       { time: '14:15頃', title: '地下鉄移動', description: '4号線で明洞駅へ（約4分）', icon: <Train className="w-5 h-5" /> },
       { time: '14:30〜15:00', title: '明洞到着', description: '買い物や街の散策', icon: <ShoppingBag className="w-5 h-5" /> },
@@ -45,12 +51,17 @@ export const scheduleData = [
     title: '帰国日',
     icon: <Plane className="w-6 h-6" />,
     events: [
-      { time: '11:00', title: 'チェックアウト', description: 'Palmtree Villa Myeongdong #201', icon: <Hotel className="w-5 h-5" /> },
-      { time: '11:10頃', title: 'タクシー移動', description: 'ソウル駅へ（約10〜20分）', icon: <Car className="w-5 h-5" /> },
+      // 共通イベント
+      { time: '10:00', title: 'チェックアウト', description: 'Palmtree Villa Myeongdong #201', icon: <Hotel className="w-5 h-5" /> },
+      { time: '10:10', title: 'タクシー移動', description: 'ソウル駅へ（約10〜20分）', icon: <Car className="w-5 h-5" /> },
       { time: '10:40', title: 'AREX乗車', description: '仁川空港行き直通列車（約43分）', icon: <Train className="w-5 h-5" /> },
       { time: '11:23', title: '空港到着', description: '仁川国際空港', icon: <Plane className="w-5 h-5" /> },
-      { time: '13:15', title: 'ソウル出発', description: 'エアソウル RS713', icon: <Plane className="w-5 h-5" /> },
-      { time: '15:15', title: '大阪到着', description: '関西国際空港', icon: <Plane className="w-5 h-5" /> },
+      // 下田家
+      { time: '12:55', title: '下田家 仁川（ICN）出発', description: 'ZIPAIR ZG042', icon: <Plane className="w-5 h-5 text-blue-500" /> },
+      { time: '15:30', title: '下田家 成田（NRT）到着', description: '成田国際空港', icon: <Plane className="w-5 h-5 text-blue-500" /> },
+      // 吉田家
+      { time: '13:15', title: '吉田家 ソウル（ICN）出発', description: 'エアソウル RS713', icon: <Plane className="w-5 h-5 text-green-500" /> },
+      { time: '15:15', title: '吉田家 大阪（KIX）到着', description: '関西国際空港', icon: <Plane className="w-5 h-5 text-green-500" /> },
     ]
   }
 ];

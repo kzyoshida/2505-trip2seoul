@@ -39,19 +39,26 @@ const InfoScreen = () => {
           <h3 className="text-xl font-bold">フライト情報</h3>
         </div>
         <div className="space-y-4">
+          {/* 吉田家（大阪発） */}
           <div className="bg-green-50 rounded-xl p-4">
-            <p className="font-semibold text-green-700">往路：エアソウル RS712</p>
-            <p className="text-sm">大阪（KIX）09:55 → ソウル（ICN）11:55</p>
-            <p className="text-xs text-gray-600 mt-1">2025年5月4日（日）</p>
+            <p className="font-semibold text-green-700 mb-1">吉田家（大阪発）</p>
+            <ul className="text-sm text-gray-700 mb-2">
+              <li><span className="font-semibold">往路：</span>2025年5月4日（日）09:55発（KIX）→ 11:55着（ICN）<br />便名：エアソウル RS712</li>
+              <li><span className="font-semibold">復路：</span>2025年5月7日（水）13:15発（ICN）→ 15:15着（KIX）<br />便名：エアソウル RS713</li>
+              <li><span className="font-semibold">乗客数：</span>3名（大人2名＋子供1名）</li>
+            </ul>
+            <div className="text-xs text-gray-600">予約番号：138542349781537</div>
+            <div className="text-xs text-gray-600">予約日：2025年3月8日</div>
           </div>
-          <div className="bg-green-50 rounded-xl p-4">
-            <p className="font-semibold text-green-700">復路：エアソウル RS713</p>
-            <p className="text-sm">ソウル（ICN）13:15 → 大阪（KIX）15:15</p>
-            <p className="text-xs text-gray-600 mt-1">2025年5月7日（水）</p>
-          </div>
-          <div className="bg-gray-50 rounded-xl p-4">
-            <p className="text-xs text-gray-600">予約番号：138542349781537</p>
-            <p className="text-xs text-gray-600">予約日：2025年3月8日</p>
+          {/* 下田家（東京発） */}
+          <div className="bg-blue-50 rounded-xl p-4">
+            <p className="font-semibold text-blue-700 mb-1">下田家（東京発）</p>
+            <ul className="text-sm text-gray-700 mb-2">
+              <li><span className="font-semibold">往路：</span>2025年5月4日（日）08:55発（NRT）→ 11:25着（ICN）<br />便名：ZIPAIR ZG041</li>
+              <li><span className="font-semibold">復路：</span>2025年5月7日（水）12:55発（ICN）→ 15:30着（NRT）<br />便名：ZIPAIR ZG042</li>
+              <li><span className="font-semibold">乗客数：</span>4名（大人2名＋子供2名）</li>
+            </ul>
+            <div className="text-xs text-gray-500">※予約番号は未確認</div>
           </div>
         </div>
       </div>
