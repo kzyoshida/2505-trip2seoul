@@ -7,6 +7,7 @@ import ChecklistScreen from './components/ChecklistScreen.jsx';
 import ShoppingScreen from './components/ShoppingScreen.jsx';
 import EArrivalGuide from './components/EArrivalGuide.jsx';
 import LinksScreen from './components/LinksScreen.jsx';
+import PreparationScreen from './components/PreparationScreen.jsx';
 
 import { supabase } from './utils/supabaseClient';
 
@@ -126,6 +127,8 @@ const SeoulTripApp = () => {
         return <LinksScreen />;
       case 'earrival':
         return <EArrivalGuide />;
+      case 'preparation':
+        return <PreparationScreen setActiveTab={setActiveTab} />;
       default:
         return <HomeScreen countdown={countdown} setActiveTab={setActiveTab} />;
     }
@@ -152,7 +155,8 @@ const SeoulTripApp = () => {
                activeTab === 'checklist' ? '持ち物リスト' :
                activeTab === 'links' ? 'リンク集' :
                activeTab === 'info' ? '基本情報' :
-               activeTab === 'earrival' ? '電子入国申告チェック' : ''}
+               activeTab === 'earrival' ? '電子入国申告チェック' :
+               activeTab === 'preparation' ? '準備' : ''}
             </h1>
           </div>
           <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">

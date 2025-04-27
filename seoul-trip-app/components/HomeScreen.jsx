@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Calendar, Users, CheckSquare, ShoppingBag, Globe, Camera, Sun, Cloud, CloudRain, CloudSnow, Zap, CloudDrizzle } from 'lucide-react';
+import { Calendar, Users, CheckSquare, ShoppingBag, Globe, Camera, Sun, Cloud, CloudRain, CloudSnow, Zap, CloudDrizzle, Plane } from 'lucide-react';
 
 const weatherIcons = {
   0: <Sun className="w-7 h-7 text-yellow-400 inline" />, // 晴れ
@@ -57,7 +57,8 @@ const HomeScreen = ({ countdown, setActiveTab }) => {
     { icon: <ShoppingBag className="w-8 h-8" />, label: '買い物リスト', tab: 'shopping', bg: 'bg-pink-50', color: 'text-pink-600' },
     { icon: <CheckSquare className="w-8 h-8" />, label: '持ち物', tab: 'checklist', bg: 'bg-purple-50', color: 'text-purple-600' },
     { icon: <Globe className="w-8 h-8" />, label: 'リンク集', tab: 'links', bg: 'bg-yellow-50', color: 'text-yellow-600' },
-    { icon: <CheckSquare className="w-8 h-8 animate-bounce text-white bg-gradient-to-tr from-blue-400 to-pink-400 rounded-full p-1 shadow-lg" />, label: '電子入国申告チェック', tab: 'earrival', bg: 'bg-gradient-to-tr from-blue-100 to-pink-100', color: 'text-pink-700 font-bold' },
+    { icon: <Camera className="w-8 h-8" />, label: '電子入国申告チェック', tab: 'earrival', bg: 'bg-blue-50', color: 'text-blue-600' },
+    { icon: <Plane className="w-8 h-8" />, label: '事前準備', tab: 'preparation', bg: 'bg-orange-50', color: 'text-orange-600' },
   ];
 
   return (
