@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
+import { families } from '../data/families';
 
 const ShoppingScreen = ({ shoppingList, toggleShoppingItem, shoppingLoading, addShoppingItem, deleteShoppingItem }) => {
   const [itemValue, setItemValue] = useState('');
   const [placeValue, setPlaceValue] = useState('');
   const [urlValue, setUrlValue] = useState('');
+  const [familyValue, setFamilyValue] = useState(families[0].name);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (itemValue.trim() !== '') {
-      addShoppingItem(itemValue.trim(), placeValue.trim(), urlValue.trim());
+      addShoppingItem(itemValue.trim(), placeValue.trim(), urlValue.trim(), familyValue);
       setItemValue('');
       setPlaceValue('');
       setUrlValue('');
     }
   };
 
+  // 選択中の家族のみ抽出
+  const filteredList = shoppingList.filter(item => item.family === familyValue);
   // 購入場所ごとにグループ化
-  const grouped = shoppingList.reduce((acc, item) => {
+  const grouped = filteredList.reduce((acc, item) => {
     const place = item.place || '未指定';
     if (!acc[place]) acc[place] = [];
     acc[place].push(item);
@@ -27,6 +31,15 @@ const ShoppingScreen = ({ shoppingList, toggleShoppingItem, shoppingLoading, add
     <div className="space-y-6 pb-20">
       <h2 className="text-2xl font-bold mb-6">買い物リスト</h2>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 mb-4">
+        <select
+          className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          value={familyValue}
+          onChange={e => setFamilyValue(e.target.value)}
+        >
+          {families.map(f => (
+            <option key={f.name} value={f.name}>{f.name}</option>
+          ))}
+        </select>
         <input
           type="text"
           className="flex-grow border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
