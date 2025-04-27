@@ -5,10 +5,10 @@ const HomeScreen = ({ countdown, setActiveTab }) => {
   const menuItems = [
     { icon: <Calendar className="w-8 h-8" />, label: '旅程', tab: 'schedule', bg: 'bg-blue-50', color: 'text-blue-600' },
     { icon: <Users className="w-8 h-8" />, label: '基本情報', tab: 'info', bg: 'bg-green-50', color: 'text-green-600' },
+    { icon: <ShoppingBag className="w-8 h-8" />, label: '買い物リスト', tab: 'shopping', bg: 'bg-pink-50', color: 'text-pink-600' },
     { icon: <CheckSquare className="w-8 h-8" />, label: '持ち物', tab: 'checklist', bg: 'bg-purple-50', color: 'text-purple-600' },
-    { icon: <ShoppingBag className="w-8 h-8" />, label: '買い物', tab: 'shopping', bg: 'bg-pink-50', color: 'text-pink-600' },
     { icon: <Globe className="w-8 h-8" />, label: 'リンク集', tab: 'links', bg: 'bg-yellow-50', color: 'text-yellow-600' },
-    { icon: <Camera className="w-8 h-8" />, label: 'アルバム', tab: 'photos', bg: 'bg-indigo-50', color: 'text-indigo-600' },
+    { icon: <CheckSquare className="w-8 h-8 animate-bounce text-white bg-gradient-to-tr from-blue-400 to-pink-400 rounded-full p-1 shadow-lg" />, label: '電子入国申告チェック', tab: 'earrival', bg: 'bg-gradient-to-tr from-blue-100 to-pink-100', color: 'text-pink-700 font-bold' },
   ];
 
   return (

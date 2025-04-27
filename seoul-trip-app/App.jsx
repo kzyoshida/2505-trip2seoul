@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Plane, Calendar, ShoppingBag, CheckSquare, Globe, Bell, ChevronLeft } from 'lucide-react';
-import HomeScreen from './components/HomeScreen';
-import ScheduleScreen from './components/ScheduleScreen';
-import InfoScreen from './components/InfoScreen';
-import ChecklistScreen from './components/ChecklistScreen';
-import ShoppingScreen from './components/ShoppingScreen';
+import HomeScreen from './components/HomeScreen.jsx';
+import ScheduleScreen from './components/ScheduleScreen.jsx';
+import InfoScreen from './components/InfoScreen.jsx';
+import ChecklistScreen from './components/ChecklistScreen.jsx';
+import ShoppingScreen from './components/ShoppingScreen.jsx';
+import EArrivalGuide from './components/EArrivalGuide.jsx';
+import LinksScreen from './components/LinksScreen.jsx';
+
 import { supabase } from './utils/supabaseClient';
-import LinksScreen from './components/LinksScreen';
-import PhotosScreen from './components/PhotosScreen';
 
 const SeoulTripApp = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -115,16 +116,16 @@ const SeoulTripApp = () => {
         return <HomeScreen countdown={countdown} setActiveTab={setActiveTab} />;
       case 'schedule':
         return <ScheduleScreen activeDay={activeDay} setActiveDay={setActiveDay} />;
+      case 'shopping':
+        return <ShoppingScreen shoppingList={shoppingList} toggleShoppingItem={toggleShoppingItem} shoppingLoading={shoppingLoading} addShoppingItem={addShoppingItem} deleteShoppingItem={deleteShoppingItem} />;
       case 'info':
         return <InfoScreen />;
       case 'checklist':
         return <ChecklistScreen checklistItems={checklistItems} toggleChecklistItem={toggleChecklistItem} />;
-      case 'shopping':
-        return <ShoppingScreen shoppingList={shoppingList} toggleShoppingItem={toggleShoppingItem} shoppingLoading={shoppingLoading} addShoppingItem={addShoppingItem} deleteShoppingItem={deleteShoppingItem} />;
       case 'links':
         return <LinksScreen />;
-      case 'photos':
-        return <PhotosScreen />;
+      case 'earrival':
+        return <EArrivalGuide />;
       default:
         return <HomeScreen countdown={countdown} setActiveTab={setActiveTab} />;
     }
@@ -147,11 +148,11 @@ const SeoulTripApp = () => {
             <h1 className="text-xl font-bold">
               {activeTab === 'home' ? 'ソウル旅行 2025' :
                activeTab === 'schedule' ? '旅程表' :
-               activeTab === 'info' ? '基本情報' :
-               activeTab === 'checklist' ? '持ち物リスト' :
                activeTab === 'shopping' ? '買い物リスト' :
+               activeTab === 'checklist' ? '持ち物リスト' :
                activeTab === 'links' ? 'リンク集' :
-               activeTab === 'photos' ? '旅の思い出' : ''}
+               activeTab === 'info' ? '基本情報' :
+               activeTab === 'earrival' ? '電子入国申告チェック' : ''}
             </h1>
           </div>
           <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
@@ -165,22 +166,19 @@ const SeoulTripApp = () => {
         {renderScreen()}
       </main>
 
-      {/* ボトムナビゲーション */}
+      {/* ボトムナビゲーション（元のデザインに戻す） */}
       <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 pb-safe">
         <div className="max-w-3xl mx-auto px-4 py-2 flex justify-around">
           {[
-            { icon: <MapPin className="w-6 h-6" />, label: 'ホーム', tab: 'home' },
-            { icon: <Calendar className="w-6 h-6" />, label: '旅程', tab: 'schedule' },
-            { icon: <CheckSquare className="w-6 h-6" />, label: 'リスト', tab: 'checklist' },
-            { icon: <ShoppingBag className="w-6 h-6" />, label: '買い物', tab: 'shopping' },
-            { icon: <Globe className="w-6 h-6" />, label: 'リンク', tab: 'links' },
+            { tab: 'home', icon: <Globe className="w-6 h-6" />, label: 'ホーム' },
+            { tab: 'schedule', icon: <Calendar className="w-6 h-6" />, label: '旅程' },
+            { tab: 'shopping', icon: <ShoppingBag className="w-6 h-6" />, label: '買い物リスト' },
+            { tab: 'info', icon: <MapPin className="w-6 h-6" />, label: '基本情報' }
           ].map((item) => (
             <button
               key={item.tab}
               onClick={() => setActiveTab(item.tab)}
-              className={`flex flex-col items-center space-y-1 px-2 py-1 rounded-lg transition-colors duration-200 ${
-                activeTab === item.tab ? 'text-blue-500' : 'text-gray-400 hover:text-gray-600'
-              }`}
+              className={`flex flex-col items-center space-y-1 px-2 py-1 rounded-lg transition-colors duration-200 ${activeTab === item.tab ? 'text-blue-500' : 'text-gray-400 hover:text-gray-600'}`}
             >
               {item.icon}
               <span className="text-xs font-medium">{item.label}</span>
