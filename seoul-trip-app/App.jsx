@@ -93,9 +93,9 @@ const SeoulTripApp = () => {
   };
 
   // 買い物リスト追加
-  const addShoppingItem = async (text, place) => {
+  const addShoppingItem = async (text, place, url) => {
     setShoppingLoading(true);
-    await supabase.from('shopping_list').insert([{ text, place, checked: false }]);
+    await supabase.from('shopping_list').insert([{ text, place, url, checked: false }]);
     await fetchShoppingList();
     setShoppingLoading(false);
   };

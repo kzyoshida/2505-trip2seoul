@@ -16,15 +16,15 @@ const InfoScreen = () => {
           {families.map((family, idx) => (
             <div key={idx} className="bg-blue-50 rounded-xl p-4">
               <p className="font-semibold text-blue-700 mb-2">{family.name}</p>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center">
                 {family.members.map((member, mIdx) => (
                   <div key={mIdx} className="flex flex-col items-center">
                     <img
                       src={member.photo}
                       alt={member.name}
-                      className="w-20 h-20 rounded-full border object-cover mb-2"
+                      className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover mb-3 transition-transform duration-200 hover:scale-105 hover:ring-4 hover:ring-pink-300"
                     />
-                    <p className="text-base text-gray-700 font-medium text-center">{member.name}</p>
+                    <p className="text-lg font-bold text-gray-800 text-center">{member.name}</p>
                   </div>
                 ))}
               </div>

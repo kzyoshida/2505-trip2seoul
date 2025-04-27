@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 const ShoppingScreen = ({ shoppingList, toggleShoppingItem, shoppingLoading, addShoppingItem, deleteShoppingItem }) => {
   const [itemValue, setItemValue] = useState('');
   const [placeValue, setPlaceValue] = useState('');
+  const [urlValue, setUrlValue] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (itemValue.trim() !== '') {
-      addShoppingItem(itemValue.trim(), placeValue.trim());
+      addShoppingItem(itemValue.trim(), placeValue.trim(), urlValue.trim());
       setItemValue('');
       setPlaceValue('');
+      setUrlValue('');
     }
   };
 
@@ -38,6 +40,13 @@ const ShoppingScreen = ({ shoppingList, toggleShoppingItem, shoppingLoading, add
           placeholder="商品名を入力..."
           value={itemValue}
           onChange={e => setItemValue(e.target.value)}
+        />
+        <input
+          type="url"
+          className="flex-grow border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-300"
+          placeholder="参考URL（任意）"
+          value={urlValue}
+          onChange={e => setUrlValue(e.target.value)}
         />
         <button type="submit" className="bg-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-600 transition-colors">追加</button>
       </form>
@@ -70,9 +79,20 @@ const ShoppingScreen = ({ shoppingList, toggleShoppingItem, shoppingLoading, add
                           </svg>
                         )}
                       </div>
-                      <span className={`flex-grow ${item.checked ? 'line-through text-gray-400' : 'text-gray-700'}`}>
-                        {item.text}
-                      </span>
+                      {item.url ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`flex-grow underline text-blue-600 hover:text-blue-800 transition-colors ${item.checked ? 'line-through text-gray-400' : ''}`}
+                        >
+                          {item.text}
+                        </a>
+                      ) : (
+                        <span className={`flex-grow ${item.checked ? 'line-through text-gray-400' : 'text-gray-700'}`}>
+                          {item.text}
+                        </span>
+                      )}
                       <button
                         onClick={() => deleteShoppingItem(item.id)}
                         className="ml-2 text-gray-300 hover:text-red-500 transition-colors"
