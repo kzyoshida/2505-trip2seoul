@@ -12,17 +12,17 @@ const InfoScreen = () => {
           <Users className="w-6 h-6 text-blue-500" />
           <h3 className="text-xl font-bold">参加メンバー</h3>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-4">
           {families.map((family, idx) => (
             <div key={idx} className="bg-blue-50 rounded-xl p-4">
               <p className="font-semibold text-blue-700 mb-2">{family.name}</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center">
+              <div className="grid grid-cols-2 gap-6 justify-items-center">
                 {family.members.map((member, mIdx) => (
                   <div key={mIdx} className="flex flex-col items-center">
                     <img
                       src={member.photo}
                       alt={member.name}
-                      className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover mb-3 transition-transform duration-200 hover:scale-105 hover:ring-4 hover:ring-pink-300"
+                      className="w-36 h-36 sm:w-40 sm:h-40 rounded-full border-4 border-white shadow-lg object-cover mb-3 transition-transform duration-200 hover:scale-105 hover:ring-4 hover:ring-pink-300"
                     />
                     <p className="text-lg font-bold text-gray-800 text-center">{member.name}</p>
                   </div>
