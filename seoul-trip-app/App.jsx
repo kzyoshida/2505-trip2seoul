@@ -5,6 +5,7 @@ import ScheduleScreen from './components/ScheduleScreen';
 import InfoScreen from './components/InfoScreen';
 import ChecklistScreen from './components/ChecklistScreen';
 import ShoppingScreen from './components/ShoppingScreen';
+import { supabase } from './utils/supabaseClient';
 import LinksScreen from './components/LinksScreen';
 import PhotosScreen from './components/PhotosScreen';
 
@@ -26,15 +27,23 @@ const SeoulTripApp = () => {
     { id: 11, text: 'K-ETA申請（3日前に行っておく）', checked: false, category: 'essential' },
   ]);
   
-  const [shoppingList, setShoppingList] = useState([
-    { id: 1, text: '明洞餃子', checked: false },
-    { id: 2, text: 'キンパ', checked: false },
-    { id: 3, text: 'チキン', checked: false },
-    { id: 4, text: '韓国コスメ', checked: false },
-    { id: 5, text: 'お土産（お菓子、フェイスパックなど）', checked: false },
-    { id: 6, text: '果物', checked: false },
-    { id: 7, text: '飲み物', checked: false },
-  ]);
+  const [shoppingList, setShoppingList] = useState([]);
+  const [shoppingLoading, setShoppingLoading] = useState(true);
+
+  // 買い物リスト取得
+  const fetchShoppingList = async () => {
+    setShoppingLoading(true);
+    const { data, error } = await supabase
+      .from('shopping_list')
+      .select('*')
+      .order('id', { ascending: true });
+    if (!error) setShoppingList(data || []);
+    setShoppingLoading(false);
+  };
+
+  useEffect(() => {
+    fetchShoppingList();
+  }, []);
 
   // カウントダウン計算
   useEffect(() => {
@@ -72,12 +81,25 @@ const SeoulTripApp = () => {
     localStorage.setItem('tripChecklist', JSON.stringify(updatedItems));
   };
 
-  const toggleShoppingItem = (id) => {
+  const toggleShoppingItem = async (id) => {
+    // 楽観的UI更新
     const updatedItems = shoppingList.map(item =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setShoppingList(updatedItems);
+    // Supabaseに反映
+    const target = updatedItems.find(item => item.id === id);
+    await supabase.from('shopping_list').update({ checked: target.checked }).eq('id', id);
   };
+
+  // 買い物リスト追加
+  const addShoppingItem = async (text) => {
+    setShoppingLoading(true);
+    await supabase.from('shopping_list').insert([{ text, checked: false }]);
+    await fetchShoppingList();
+    setShoppingLoading(false);
+  };
+
 
   // 画面切り替え
   const renderScreen = () => {
@@ -91,7 +113,7 @@ const SeoulTripApp = () => {
       case 'checklist':
         return <ChecklistScreen checklistItems={checklistItems} toggleChecklistItem={toggleChecklistItem} />;
       case 'shopping':
-        return <ShoppingScreen shoppingList={shoppingList} toggleShoppingItem={toggleShoppingItem} />;
+        return <ShoppingScreen shoppingList={shoppingList} toggleShoppingItem={toggleShoppingItem} shoppingLoading={shoppingLoading} addShoppingItem={addShoppingItem} />;
       case 'links':
         return <LinksScreen />;
       case 'photos':
