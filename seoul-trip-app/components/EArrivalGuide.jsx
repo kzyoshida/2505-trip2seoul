@@ -1,5 +1,4 @@
 import React from 'react';
-
 const EArrivalGuide = () => (
   <div className="space-y-6 pb-20">
     <h2 className="text-2xl font-bold mb-6 text-blue-700">韓国 電子入国申告制度（e-Arrival Card）について</h2>
