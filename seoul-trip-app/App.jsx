@@ -93,13 +93,20 @@ const SeoulTripApp = () => {
   };
 
   // 買い物リスト追加
-  const addShoppingItem = async (text) => {
+  const addShoppingItem = async (text, place) => {
     setShoppingLoading(true);
-    await supabase.from('shopping_list').insert([{ text, checked: false }]);
+    await supabase.from('shopping_list').insert([{ text, place, checked: false }]);
     await fetchShoppingList();
     setShoppingLoading(false);
   };
 
+  // 買い物リスト削除
+  const deleteShoppingItem = async (id) => {
+    setShoppingLoading(true);
+    await supabase.from('shopping_list').delete().eq('id', id);
+    await fetchShoppingList();
+    setShoppingLoading(false);
+  };
 
   // 画面切り替え
   const renderScreen = () => {
@@ -113,7 +120,7 @@ const SeoulTripApp = () => {
       case 'checklist':
         return <ChecklistScreen checklistItems={checklistItems} toggleChecklistItem={toggleChecklistItem} />;
       case 'shopping':
-        return <ShoppingScreen shoppingList={shoppingList} toggleShoppingItem={toggleShoppingItem} shoppingLoading={shoppingLoading} addShoppingItem={addShoppingItem} />;
+        return <ShoppingScreen shoppingList={shoppingList} toggleShoppingItem={toggleShoppingItem} shoppingLoading={shoppingLoading} addShoppingItem={addShoppingItem} deleteShoppingItem={deleteShoppingItem} />;
       case 'links':
         return <LinksScreen />;
       case 'photos':
