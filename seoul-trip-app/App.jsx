@@ -3,6 +3,7 @@ import { MapPin, Plane, Calendar, ShoppingBag, CheckSquare, Globe, Bell, Chevron
 import HomeScreen from './components/HomeScreen.jsx';
 import ScheduleScreen from './components/ScheduleScreen.jsx';
 import InfoScreen from './components/InfoScreen.jsx';
+import PaymentInfoScreen from './components/PaymentInfoScreen.jsx';
 import ChecklistScreen from './components/ChecklistScreen.jsx';
 import ShoppingScreen from './components/ShoppingScreen.jsx';
 import EArrivalGuide from './components/EArrivalGuide.jsx';
@@ -129,6 +130,8 @@ const SeoulTripApp = () => {
         return <EArrivalGuide />;
       case 'preparation':
         return <PreparationScreen setActiveTab={setActiveTab} />;
+      case 'payment':
+        return <PaymentInfoScreen />;
       default:
         return <HomeScreen countdown={countdown} setActiveTab={setActiveTab} />;
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Calendar, Users, CheckSquare, ShoppingBag, Globe, Camera, Sun, Cloud, CloudRain, CloudSnow, Zap, CloudDrizzle, Plane } from 'lucide-react';
+import { Calendar, Users, CheckSquare, ShoppingBag, Globe, Camera, Sun, Cloud, CloudRain, CloudSnow, Zap, CloudDrizzle, Plane, Wallet } from 'lucide-react';
 
 const weatherIcons = {
   0: <Sun className="w-7 h-7 text-yellow-400 inline" />, // 晴れ
@@ -59,6 +59,7 @@ const HomeScreen = ({ countdown, setActiveTab }) => {
     { icon: <Globe className="w-8 h-8" />, label: 'リンク集', tab: 'links', bg: 'bg-yellow-50', color: 'text-yellow-600' },
     { icon: <Camera className="w-8 h-8" />, label: '電子入国申告チェック', tab: 'earrival', bg: 'bg-blue-50', color: 'text-blue-600' },
     { icon: <Plane className="w-8 h-8" />, label: '事前準備', tab: 'preparation', bg: 'bg-orange-50', color: 'text-orange-600' },
+    { icon: <Wallet className="w-8 h-8" />, label: '両替・決済情報', tab: 'payment', bg: 'bg-lime-50', color: 'text-lime-600' },
   ];
 
   return (

@@ -71,6 +71,19 @@ const InfoScreen = () => {
         <div className="bg-purple-50 rounded-xl p-4">
           <p className="font-semibold text-purple-700">Palmtree Villa Myeongdong #201</p>
           <p className="text-sm mt-2">41-6 Toegye-ro 20-gil, 明洞エリア</p>
+          {/* Google Maps埋め込み */}
+          <div className="my-4">
+            <iframe
+              title="Palmtree Villa Myeongdong #201 Map"
+              src="https://www.google.com/maps?q=41-6+Toegye-ro+20-gil,+Seoul,+South+Korea&output=embed"
+              width="100%"
+              height="240"
+              style={{ border: 0, borderRadius: '1rem', boxShadow: '0 2px 8px rgba(80,0,120,0.08)' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
           <div className="mt-3 space-y-1">
             <p className="text-sm">チェックイン：5月4日（日）16:00</p>
             <p className="text-sm">チェックアウト：5月7日（水）11:00</p>
@@ -97,7 +110,20 @@ const InfoScreen = () => {
           </ul>
           <div className="text-sm text-gray-700 mb-2">
             <div><span className="font-semibold">営業時間：</span>8:00～19:00（最終受付18:00）</div>
-            <div><span className="font-semibold">住所：</span>ソウル特別市 中区 明洞8ナキル 27, 10F<br/>(서울특별시 중구 명동8나길 27, 10F)</div>
+            <div><span className="font-semibold">住所：</span>韓国 Seoul, Jung District, 퇴계로 １１６−１ 10층</div>
+          </div>
+          {/* Google Maps埋め込み：明洞ビンセントクリニック */}
+          <div className="my-4">
+            <iframe
+              title="明洞ビンセントクリニック Map"
+              src="https://www.google.com/maps?q=韓国+Seoul,+Jung+District,+퇴계로+116-1+10층&output=embed"
+              width="100%"
+              height="240"
+              style={{ border: 0, borderRadius: '1rem', boxShadow: '0 2px 8px rgba(255,0,120,0.08)' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
           <a href="https://www.konest.com/contents/clinic_mise_detail.html?id=31341" target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-pink-600 underline">コネスト公式クリニックページ</a>
         </div>
