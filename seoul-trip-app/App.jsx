@@ -9,6 +9,7 @@ import ShoppingScreen from './components/ShoppingScreen.jsx';
 import EArrivalGuide from './components/EArrivalGuide.jsx';
 import LinksScreen from './components/LinksScreen.jsx';
 import PreparationScreen from './components/PreparationScreen.jsx';
+import PhotoGallery from './components/PhotoGallery.jsx';
 
 import { supabase } from './utils/supabaseClient';
 
@@ -126,6 +127,8 @@ const SeoulTripApp = () => {
         return <ChecklistScreen checklistItems={checklistItems} toggleChecklistItem={toggleChecklistItem} />;
       case 'links':
         return <LinksScreen />;
+      case 'photos':
+        return <PhotoGallery />;
       case 'earrival':
         return <EArrivalGuide />;
       case 'preparation':
@@ -138,7 +141,8 @@ const SeoulTripApp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg">
+
       {/* ヘッダー */}
       <header className="bg-white sticky top-0 z-50 border-b border-gray-100">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -173,13 +177,14 @@ const SeoulTripApp = () => {
         {renderScreen()}
       </main>
 
-      {/* ボトムナビゲーション（元のデザインに戻す） */}
+      {/* ボトムナビゲーション（写真タブ追加） */}
       <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 pb-safe">
         <div className="max-w-3xl mx-auto px-4 py-2 flex justify-around">
           {[
             { tab: 'home', icon: <Globe className="w-6 h-6" />, label: 'ホーム' },
             { tab: 'schedule', icon: <Calendar className="w-6 h-6" />, label: '旅程' },
             { tab: 'shopping', icon: <ShoppingBag className="w-6 h-6" />, label: '買い物リスト' },
+            { tab: 'photos', icon: <img src="https://cdn-icons-png.flaticon.com/512/747/747545.png" alt="写真" className="w-6 h-6" />, label: '写真' },
             { tab: 'info', icon: <MapPin className="w-6 h-6" />, label: '基本情報' }
           ].map((item) => (
             <button
