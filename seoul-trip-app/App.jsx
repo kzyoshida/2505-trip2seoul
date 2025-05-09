@@ -9,7 +9,6 @@ import ShoppingScreen from './components/ShoppingScreen.jsx';
 import EArrivalGuide from './components/EArrivalGuide.jsx';
 import LinksScreen from './components/LinksScreen.jsx';
 import PreparationScreen from './components/PreparationScreen.jsx';
-import PhotoGallery from './components/PhotoGallery.jsx';
 
 import { supabase } from './utils/supabaseClient';
 
@@ -128,7 +127,9 @@ const SeoulTripApp = () => {
       case 'links':
         return <LinksScreen />;
       case 'photos':
-        return <PhotoGallery />;
+        // GoogleフォトアルバムURLに自動遷移
+        window.location.href = 'https://photos.app.goo.gl/yTBhNerxPkV1SFcY9';
+        return null;
       case 'earrival':
         return <EArrivalGuide />;
       case 'preparation':
