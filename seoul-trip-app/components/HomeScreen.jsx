@@ -51,7 +51,8 @@ const HomeScreen = ({ countdown, setActiveTab }) => {
     };
     fetchWeather();
   }, []);
-  const menuItems = [
+  // 事前確認セクション
+  const preTripMenu = [
     { icon: <Calendar className="w-8 h-8" />, label: '旅程', tab: 'schedule', bg: 'bg-blue-50', color: 'text-blue-600' },
     { icon: <Users className="w-8 h-8" />, label: '基本情報', tab: 'info', bg: 'bg-green-50', color: 'text-green-600' },
     { icon: <ShoppingBag className="w-8 h-8" />, label: '買い物リスト', tab: 'shopping', bg: 'bg-pink-50', color: 'text-pink-600' },
@@ -60,6 +61,11 @@ const HomeScreen = ({ countdown, setActiveTab }) => {
     { icon: <Camera className="w-8 h-8" />, label: '電子入国申告チェック', tab: 'earrival', bg: 'bg-blue-50', color: 'text-blue-600' },
     { icon: <Plane className="w-8 h-8" />, label: '事前準備', tab: 'preparation', bg: 'bg-orange-50', color: 'text-orange-600' },
     { icon: <Wallet className="w-8 h-8" />, label: '両替・決済情報', tab: 'payment', bg: 'bg-lime-50', color: 'text-lime-600' },
+  ];
+  // 旅行後確認用セクション
+  const postTripMenu = [
+    { icon: <CheckSquare className="w-8 h-8" />, label: '後書き', tab: 'lookback', bg: 'bg-gray-50', color: 'text-gray-600' },
+    { icon: <Wallet className="w-8 h-8" />, label: '使ったお金', tab: 'spendings', bg: 'bg-green-50', color: 'text-green-600' },
   ];
 
   return (
@@ -82,8 +88,24 @@ const HomeScreen = ({ countdown, setActiveTab }) => {
         </div>
       </div>
 
+      {/* 事前確認セクション */}
+      <div className="mt-8 mb-2 text-lg font-bold text-blue-700">事前確認</div>
+      <div className="grid grid-cols-2 gap-4 mb-8">
+        {preTripMenu.map((item) => (
+          <button
+            key={item.tab}
+            onClick={() => setActiveTab(item.tab)}
+            className={`${item.bg} rounded-2xl p-6 flex flex-col items-center space-y-3 transition-all duration-300 hover:scale-105 hover:shadow-lg`}
+          >
+            <div className={item.color}>{item.icon}</div>
+            <span className={`font-medium ${item.color}`}>{item.label}</span>
+          </button>
+        ))}
+      </div>
+      {/* 旅行後確認用セクション */}
+      <div className="mt-8 mb-2 text-lg font-bold text-gray-700">旅行後確認用</div>
       <div className="grid grid-cols-2 gap-4">
-        {menuItems.map((item) => (
+        {postTripMenu.map((item) => (
           <button
             key={item.tab}
             onClick={() => setActiveTab(item.tab)}
@@ -102,5 +124,7 @@ const HomeScreen = ({ countdown, setActiveTab }) => {
 
 import SeoulWeather from './SeoulWeather';
 import SeoulWeatherHourly from './SeoulWeatherHourly';
+import LookbackSection from './LookbackSection';
+import lookbackDays from './LookbackData';
 
 export default HomeScreen;

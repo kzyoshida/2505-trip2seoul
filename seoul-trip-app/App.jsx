@@ -11,6 +11,9 @@ import LinksScreen from './components/LinksScreen.jsx';
 import PreparationScreen from './components/PreparationScreen.jsx';
 
 import { supabase } from './utils/supabaseClient';
+import LookbackSection from './components/LookbackSection';
+import lookbackDays from './components/LookbackData';
+import SpendingsSection from './components/SpendingsSection';
 
 const SeoulTripApp = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -136,6 +139,10 @@ const SeoulTripApp = () => {
         return <PreparationScreen setActiveTab={setActiveTab} />;
       case 'payment':
         return <PaymentInfoScreen />;
+      case 'lookback':
+        return <LookbackSection days={lookbackDays} />;
+      case 'spendings':
+        return <SpendingsSection />;
       default:
         return <HomeScreen countdown={countdown} setActiveTab={setActiveTab} />;
     }
