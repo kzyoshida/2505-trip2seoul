@@ -34,15 +34,49 @@ export default function LookbackSection({ days }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {day.topics.map((topic, idx) => {
               const cat = guessCategory(topic.title + topic.items.join(" "));
+              // 4日目だけ特別なスタイル
+              if (day.title === "4日目") {
+                return (
+                  <div key={idx} style={{ background: "#fff", borderRadius: 10, boxShadow: "0 1px 4px #eee", padding: 16, marginBottom: 8 }}>
+                    <div style={{ fontWeight: 700, color: "#1976d2", fontSize: 18, marginBottom: 8, borderLeft: '4px solid #1976d2', paddingLeft: 10 }}>{topic.title}</div>
+                    <ul style={{ margin: 0, paddingLeft: 28 }}>
+                      {topic.items.map((item, i) => {
+                        const mdLinkMatch = item.match(/^\[(.+?)\]\((https?:\/\/[^)]+)\)$/);
+                        if (mdLinkMatch) {
+                          return (
+                            <li key={i} style={{ color: "#1976d2", fontWeight: 600, lineHeight: 1.8, fontSize: 16 }}>
+                              <a href={mdLinkMatch[2]} target="_blank" rel="noopener noreferrer" style={{ color: "#1976d2", textDecoration: "underline" }}>{mdLinkMatch[1]}</a>
+                            </li>
+                          );
+                        }
+                        // サブ見出し的なもの（「○○から△△まで」等）は太字＋インデント
+                        if (/^(ホテルから|ソウル駅から|空港内|移動|配車|Arexで移動)/.test(item)) {
+                          return <li key={i} style={{ fontWeight: 700, color: '#34495e', marginTop: 6, marginBottom: 2, fontSize: 15, paddingLeft: 8 }}>{item}</li>;
+                        }
+                        return <li key={i} style={{ color: "#555", lineHeight: 1.7, fontSize: 15, paddingLeft: 16 }}>{item}</li>;
+                      })}
+                    </ul>
+                  </div>
+                );
+              }
+              // 通常日付の表示
               return (
                 <div key={idx} style={{ display: "flex", alignItems: "flex-start", background: "#fff", borderRadius: 10, boxShadow: "0 1px 4px #eee", padding: 12, gap: 16 }}>
                   <div style={{ fontSize: 24, marginTop: 2 }}>{iconMap[cat] || iconMap["その他"]}</div>
                   <div>
                     <div style={{ fontWeight: 600, color: "#2c3e50", marginBottom: 4 }}>{topic.title}</div>
                     <ul style={{ margin: 0, paddingLeft: 18 }}>
-                      {topic.items.map((item, i) => (
-                        <li key={i} style={{ color: "#555", lineHeight: 1.7 }}>{item}</li>
-                      ))}
+                      {topic.items.map((item, i) => {
+                        const mdLinkMatch = item.match(/^\[(.+?)\]\((https?:\/\/[^)]+)\)$/);
+                        if (mdLinkMatch) {
+                          return (
+                            <li key={i} style={{ color: "#555", lineHeight: 1.7 }}>
+                              <a href={mdLinkMatch[2]} target="_blank" rel="noopener noreferrer" style={{ color: "#1976d2", textDecoration: "underline" }}>{mdLinkMatch[1]}</a>
+                            </li>
+                          );
+                        }
+                        return <li key={i} style={{ color: "#555", lineHeight: 1.7 }}>{item}</li>;
+                      })}
                     </ul>
                   </div>
                 </div>
